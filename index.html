@@ -3,24 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sample Test Page</title>
+    <title>Zahlenraten (Number Guessing Game)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
         }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #555;
+
+        input[type="number"] {
+            padding: 10px;
             font-size: 18px;
         }
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-           
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zahlenraten Spiel</h1>
+    <p>Rate eine Zahl zwischen 1 und 100!</p>
+    
+    <input type="number" id="guessInput" min="1" max="100" placeholder="Deine Zahl">
+    <button onclick="checkGuess()">Raten!</button>
+
+    <div id="result"></div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = document.getElementById("guessInput").value;
+            const resultDiv = document.getElementById("result");
+            attempts++;
+
+            if (userGuess == randomNumber) {
+                resultDiv.innerHTML = `Herzlichen Glückwunsch! Du hast die richtige Zahl nach ${attempts} Versuchen erraten.`;
+            } else if (userGuess < randomNumber) {
+                resultDiv.innerHTML = "Die gesuchte Zahl ist größer!";
+            } else {
+                resultDiv.innerHTML = "Die gesuchte Zahl ist kleiner!";
+            }
+        }
+    </script>
+</body>
+</html>
